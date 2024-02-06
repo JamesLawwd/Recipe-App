@@ -1,5 +1,5 @@
 from flask import Flask
-from flask_restx import Api,Resource
+from flask_restx import Api,Resource,fields
 from config import DevConfig
 from models import Recipe
 from exts import db
@@ -12,10 +12,27 @@ db.init_app(app)
 
 api=Api(app,doc='/docs')
 
+# model (serializer)
+recipe_model=api.model(
+    "Recipe",
+    {
+        "id":fields.Integer(),
+        "title":fields.String(),
+        "description":fields.String()
+    }
+)
+
 @api.route('/hello')
 class HelloResource(Resource):
     def get(self):
         return{"message":"Hello World"}
+    
+
+@api.route('/recipes')
+class RecipesResource(Resource):
+    def get(self):
+        """Get all recipes"""
+        pass 
 
 
 @app.shell_context_processor
