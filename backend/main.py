@@ -3,12 +3,14 @@ from flask_restx import Api,Resource,fields
 from config import DevConfig
 from models import Recipe
 from exts import db
+from flask_migrate import Migrate
 
 app=Flask(__name__)
 app.config.from_object(DevConfig)
 
 db.init_app(app)
 
+migrate=Migrate(app,db)
 
 api=Api(app,doc='/docs')
 
@@ -26,6 +28,16 @@ recipe_model=api.model(
 class HelloResource(Resource):
     def get(self):
         return{"message":"Hello World"}
+    
+@api.route('/signup')
+class Signup(Resource):
+    def post(self):
+        pass
+
+@api.route('/login')
+class Login(Resource):
+    def post(self):
+        pass
     
 
 @api.route('/recipes')
@@ -90,7 +102,7 @@ class RecipesResource(Resource):
         recipe_to_delete.delete()
         return recipe_to_delete
     
-    
+
         
 
 
