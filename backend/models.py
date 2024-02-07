@@ -1,17 +1,9 @@
 from exts import db 
 
-"""
-class Recipe:
-   id:int primary key
-   title:str
-   description:str (text)
-    
-"""
-
 class Recipe(db.Model):
-    id=db.Column(db.Integer(),primary_key=True)
-    title=db.Column(db.String(),nullable=False)
-    description=db.Column(db.text(),nullable=False)
+    id = db.Column(db.Integer(), primary_key=True)
+    title = db.Column(db.String(), nullable=False)
+    description = db.Column(db.Text(), nullable=False)  # Use db.Text() instead of db.text()
 
     def __repr__(self):
         return f"<Recipe {self.title} >"
@@ -21,33 +13,11 @@ class Recipe(db.Model):
         db.session.commit()
 
     def delete(self):
-        db.session.delete
-        db.session.commit
-
-    def update(self,title,description):
-        self.title=title
-        self.description=description
-
+        db.session.delete(self)  # Fixed typo: db.session.delete(self)
         db.session.commit()
 
+    def update(self, title, description):
+        self.title = title
+        self.description = description
 
-    # user model
-        
-"""
-class User:
-    id:integer
-    username:string
-    email:string
-    password:string
-"""
-
-class User(db.Model):
-    id=db.Column(db.Integer,primary_key=True)
-    username=db.Column(db.String(25),nullable=False,unique=True)
-    email=db.Column(db.String(80),nullable=False)
-    password=db.Column(id.Text(),nullable=False)
-
-    def __repr__(self):
-        return f"<User {self.username}>"
-
-
+        db.session.commit()
