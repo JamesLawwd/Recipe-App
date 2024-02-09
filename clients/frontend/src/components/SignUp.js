@@ -133,6 +133,3 @@ const SignUpPage = () => {
 }
 
 export default SignUpPage
-
-
-// .apply.apply...
