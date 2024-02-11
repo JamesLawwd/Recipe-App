@@ -20,7 +20,8 @@ db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 migrate = Migrate(app, db)
 jwt = JWTManager(app)
-
+with app.app_context():
+    db.create_all()
 
 flask_db_init = Blueprint('flask_db_init', __name__)
 
@@ -29,5 +30,3 @@ def create_tables():
     db.create_all()
 
 app.register_blueprint(flask_db_init)
-
-# your Flask app code here

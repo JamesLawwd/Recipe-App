@@ -5,7 +5,7 @@ from flask import Flask, request, jsonify,Blueprint
 # create blueprints
 associate_bp = Blueprint('association', __name__)
 
-# Dummy data to simulate the database
+#  data to simulate the database
 menu_order_item_association_data = []
 
 @associate_bp.route('/associate_menu_order_item', methods=['POST'])
